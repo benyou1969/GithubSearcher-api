@@ -1,11 +1,10 @@
 import axios from "axios";
+import cors from "cors";
 import express from "express";
 import Redis from "ioredis";
+import swaggerUi from "swagger-ui-express";
 import { RequestBody, TypeSearch } from "types";
-import cors from 'cors'
-import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from "../swagger.json";
-
 
 const app = express();
 const redis = new Redis();
@@ -13,7 +12,7 @@ const port = 8000;
 
 app.use(express.json());
 //* enable cors for the frontend app
-app.use(cors())
+app.use(cors());
 //* enable swagger documentation
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 /*
@@ -25,7 +24,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const cache = (req, res, next) => {
   const { searchTerm, searchType }: RequestBody = req.body;
-  console.log("Cache { searchTerm, searchType }",{ searchTerm, searchType })
   const type =
     searchType === TypeSearch.ISSUES
       ? TypeSearch.ISSUES
@@ -53,7 +51,6 @@ app.get("/ping", (req, res) => res.send("pong"));
 //* POST request to search for users, repositories, or issues
 app.post("/api/search", cache, async (req, res) => {
   const { searchTerm, searchType }: RequestBody = req.body;
- console.log("{ searchTerm, searchType }",{ searchTerm, searchType })
   //* check if the search type is valid and return type value
   const type =
     searchType === TypeSearch.ISSUES
