@@ -5,6 +5,8 @@
     "rootDir": ".",
     "esModuleInterop": true,
     "baseUrl": "./src",
+    "resolveJsonModule": true,
+    
   },
   "exclude": ["node_modules"]
 }

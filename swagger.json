@@ -1,0 +1,85 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Github Searcher",
+    "description": "documentation for Github Searcher backend",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/search": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "description": "Search for github users, issues, repositories, etc.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "search for a user, repository, issue, etc.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Search"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Search was found"
+          }
+        }
+      }
+    },
+    "/api/clear-cache": {
+      "get": {
+        "tags": [
+          "Clear"
+        ],
+        "description": "clear cache",
+        "responses": {
+          "200": {
+            "description": "Cache was cleared"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Search": {
+      "required": [],
+      "properties": {
+        "searchTerm": {
+          "type": "string",
+          "example": "Ben"
+        },
+        "searchType": {
+          "type": "string",
+          "description": "type of search, user, repository, issue, etc.",
+          "enum": [
+            "users",
+            "repositories",
+            "issues"
+          ]
+        }
+      }
+    }
+  }
+}

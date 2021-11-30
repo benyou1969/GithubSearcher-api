@@ -1,13 +1,17 @@
 {
   "name": "api-express",
   "version": "1.0.0",
- 
   "description": "an express server for fetching users, issues, and repositories from github api, then store the data in redis cache.",
   "main": "index.js",
   "scripts": {
     "serve": "nodemon src/app.ts"
   },
-  "keywords": ["redis", "express","typescript", "github"],
+  "keywords": [
+    "redis",
+    "express",
+    "typescript",
+    "github"
+  ],
   "author": "Benyoucef Mansour",
   "license": "ISC",
   "devDependencies": {
@@ -20,7 +24,9 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "ioredis": "^4.28.1"
+    "ioredis": "^4.28.1",
+    "swagger-ui-express": "^4.1.6"
   }
 }
